@@ -5,7 +5,6 @@ import numpy as np
 from encode_message import *
 import sys
 from bitarray import bitarray
-import os
 import argparse
 
 class bufr_list:
@@ -82,9 +81,6 @@ def main( argv ):
 
     # get number of subsets in file
     nsubsets = len( root_data.dimensions['obs'] )
-
-    subset_data = list()
-    subset_replications = list()
 
     # iterate over subset
     for idx in range( nsubsets ):
