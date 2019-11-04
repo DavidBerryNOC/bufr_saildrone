@@ -1,0 +1,170 @@
+{
+  "title":"Saildrone NetCDF to BUFR mappings",
+  "version":"0.1",
+  "author":"David I. Berry",
+  "typical_time":["global:attr:time_coverage_start"],
+  "descriptors":["315011"],
+  "descriptors_expanded":[
+    {"FXXYYY":"315011", "element_name":null, "descriptors":[
+      {"FXXYYY":"301150", "element_name":"(WIGOS identifier)", "descriptors":[
+        {"FXXYYY":"001125", "element_name":"WIGOS identifier series", "standard_name":null, "map":null, "transform":null},
+        {"FXXYYY":"001126", "element_name":"WIGOS issuer of identifier", "standard_name":null, "map":null, "transform":null},
+        {"FXXYYY":"001127", "element_name":"WIGOS issue number", "standard_name":null, "map":null, "transform":null},
+        {"FXXYYY":"001128", "element_name":"WIGOS local identifier (character)", "standard_name":null, "map":"const:HELLO", "transform":null}
+      ]},
+      {"FXXYYY":"001036", "element_name":"Agency in charge of operating the observing platform", "standard_name":null, "map":"const:840002",         "transform":"lambda x: int(x)"},
+      {"FXXYYY":"001085", "element_name":"Observing platform manufacturer's model",              "standard_name":null, "map":"global:attr:platform", "transform":null},
+      {"FXXYYY":"001086", "element_name":"Observing platform manufacturer's serial number",      "standard_name":null, "map":"global:attr:drone_id", "transform":null},
+      {"FXXYYY":"003001", "element_name":"Surface station type",                                 "standard_name":null, "map":"const:9",              "transform":"lambda x: int(x)"},
+      {"FXXYYY":"208032", "element_name":"Change width of CCITT IA5 field",                      "standard_name":null, "map":null,                   "transform":null},
+      {"FXXYYY":"001079", "element_name":"Unique ID for report",                                 "standard_name":null, "map":null,                   "transform":null},
+      {"FXXYYY":"208000", "element_name":"Change width of CCITT IA5 field",                      "standard_name":null, "map":null,                   "transform":null},
+      {"FXXYYY":"301011", "element_name":"(Year, month, day)", "descriptors":[
+        {"FXXYYY":"004001", "element_name":"Year",  "standard_name":null, "map":"var:time:value", "transform":"lambda x: time.gmtime(x).tm_year"},
+        {"FXXYYY":"004002", "element_name":"Month", "standard_name":null, "map":"var:time:value", "transform":"lambda x: time.gmtime(x).tm_mon"},
+        {"FXXYYY":"004003", "element_name":"Day",   "standard_name":null, "map":"var:time:value", "transform":"lambda x: time.gmtime(x).tm_mday"}
+      ]},
+      {"FXXYYY":"301012", "element_name":"(Hour, minute)", "descriptors":[
+        {"FXXYYY":"004004", "element_name":"Hour",   "standard_name":null, "map":"var:time:value","transform":"lambda x: time.gmtime(x).tm_hour"},
+        {"FXXYYY":"004005", "element_name":"Minute", "standard_name":null, "map":"var:time:value","transform":"lambda x: time.gmtime(x).tm_min"}
+      ]},
+      {"FXXYYY":"301021", "element_name":"(Latitude/longitude (high accuracy))", "descriptors":[
+        {"FXXYYY":"005001", "element_name":"Latitude (high accuracy)",  "standard_name":null, "map":"var:latitude:value",  "transform":null},
+        {"FXXYYY":"006001", "element_name":"Longitude (high accuracy)", "standard_name":null, "map":"var:longitude:value", "transform":null}
+      ]},
+      {"FXXYYY":"001012", "element_name":"Direction of motion of moving observing platform",        "standard_name":null, "map":"var:COG:value", "transform":null},
+      {"FXXYYY":"001013", "element_name":"Speed of motion of moving platform",                      "standard_name":null, "map":"var:SOG:value", "transform":null},
+      {"FXXYYY":"011104", "element_name":"True heading of aircraft, ship or other mobile platform", "standard_name":null, "map":"var:HDG:value", "transform":null, "comments":"NEW FIELD TO SEQUENCE"},
+      {"FXXYYY":"103000", "element_name":"Delayed replication of 3 descriptors", "nreplications":1, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"007031", "element_name":"Height of barometer above mean sea level", "standard_name":null, "map":"var:BARO_PRES_MEAN:attr:installed_height:value", "transform":null},
+        {"FXXYYY":"306038", "element_name":"(Sequence for representation of standard surface marine meteorological observations from moored buoys)", "descriptors":[
+          {"FXXYYY":"010004", "element_name":"Pressure",                              "standard_name":"air_pressure",                   "map":"var:BARO_PRES_MEAN:value",                      "transform":"lambda x: x * 100.0"},
+          {"FXXYYY":"010051", "element_name":"Pressure reduced to mean sea level",    "standard_name":"air_pressure_at_mean_sea_level", "map":"var:BARO_PRES_MEAN:value",                      "transform":"lambda x: x * 100.0"},
+          {"FXXYYY":"007033", "element_name":"Height of sensor above water surface",  "standard_name":null,                             "map":"var:TEMP_AIR_MEAN:attr:installed_height:value", "transform":null},
+          {"FXXYYY":"012101", "element_name":"Temperature/air temperature",           "standard_name":"air_temperature",                "map":"var:TEMP_AIR_MEAN:value",                       "transform":"lambda x: x + 273.15"},
+          {"FXXYYY":"012103", "element_name":"Dewpoint temperature",                  "standard_name":"dew_point_temperature",          "map":null,                                            "transform":"lambda x: x + 273.15"},
+          {"FXXYYY":"013003", "element_name":"Relative humidity",                     "standard_name":"relative_humidity",              "map":"var:RH_MEAN:value",                             "transform":null},
+          {"FXXYYY":"007033", "element_name":"Height of sensor above water surface",  "standard_name":null,                             "map":"var:UWND_MEAN:attr:installed_height:value", "transform":null},
+          {"FXXYYY":"008021", "element_name":"Time significance",                     "standard_name":null,                             "map":"const:2", "transform":"lambda x: int(x)"},
+          {"FXXYYY":"004025", "element_name":"Time period or displacement",           "standard_name":null,                             "map":"const:1", "transform":"lambda x: int(x)"},
+          {"FXXYYY":"011001", "element_name":"Wind direction",                        "standard_name":"wind_to_direction",              "map":["var:UWND_MEAN:val","var:VWND_MEAN:val"], "transform":"lambda u, v: (90-np.rad2deg(np.arctan2(v,u)))%360" },
+          {"FXXYYY":"011002", "element_name":"Wind speed",                            "standard_name":"wind_speed",                     "map":["var:UWND_MEAN:val","var:VWND_MEAN:val"], "transform":"lambda u, v: (u**2.0 + v**2.0)**0.5" },
+          {"FXXYYY":"008021", "element_name":"Time significance",                     "standard_name":null,                             "map":null, "transform":null},
+          {"FXXYYY":"004025", "element_name":"Time period or displacement",           "standard_name":null,                             "map":"const:1", "transform":"lambda x: int(x)"},
+          {"FXXYYY":"011041", "element_name":"Maximum wind gust speed",               "standard_name":"wind_speed_of_gust",             "map":"var:GUST_WND_MEAN:value", "transform":null},
+          {"FXXYYY":"004025", "element_name":"Time period or displacement",           "standard_name":null,                             "map":null, "transform":null},
+          {"FXXYYY":"007033", "element_name":"Height of sensor above water surface",  "standard_name":null,                             "map":null, "transform":null},
+          {"FXXYYY":"002005", "element_name":"Precision of temperature observation",  "standard_name":null,                             "map":"const:0.01", "transform":"lambda x: float(x)"},
+          {"FXXYYY":"007063", "element_name":"Depth below sea/water surface (cm)",    "standard_name":null,                             "map":"var:TEMP_SBE37_MEAN:attr:installed_height", "transform":"lambda x: -1.0*x"},
+          {"FXXYYY":"022049", "element_name":"Sea-surface temperature",               "standard_name":"sea_surface_temperature",        "map":"var:TEMP_SBE37_MEAN:value", "transform":"lambda x: x + 273.15"}
+        ]},
+        {"FXXYYY":"012161", "element_name":"Skin temperature",                         "standard_name":"sea_surface_skin_temperature",   "map":"var:TEMP_IR_UNCOMP_MEAN:value", "transform":"lambda x: x + 273.15"}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptors", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306034", "element_name":"(Surface current)", "descriptors":[
+          {"FXXYYY":"002031", "element_name":"Duration and time of current measurement",                        "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"003010", "element_name":"Method of sea/water current measurement",                         "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"002040", "element_name":"Method of removing velocity and motion of platform from current", "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"022005", "element_name":"Direction of sea-surface current",                                "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"022032", "element_name":"Speed of sea-surface current",                                    "standard_name":null, "map":null, "transform":null}
+        ]}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptors", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306039", "element_name":"(Sequence for representation of basic wave measurements)", "descriptors":[
+          {"FXXYYY":"022078", "element_name":"Duration of wave record",                        "standard_name":null,                                                           "map":null, "transform":null},
+          {"FXXYYY":"022070", "element_name":"Significant wave height",                        "standard_name":"sea_surface_wave_significant_height",                          "map":"var:WAVE_SIGNIFICANT_HEIGHT:value", "transform":null},
+          {"FXXYYY":"022073", "element_name":"Maximum wave height",                            "standard_name":null,                                                           "map":null, "transform":null},
+          {"FXXYYY":"022074", "element_name":"Average wave period",                            "standard_name":null,                                                           "map":null, "transform":null},
+          {"FXXYYY":"022071", "element_name":"Spectral peak wave period",                      "standard_name":"sea_surface_wave_period_at_variance_spectral_density_maximum", "map":"var:WAVE_DOMINANT_PERIOD:value", "transform":null},
+          {"FXXYYY":"022076", "element_name":"Direction from which dominant waves are coming", "standard_name":null,                                                           "map":null, "transform":null},
+          {"FXXYYY":"022077", "element_name":"Directional spread of dominant wave",            "standard_name":null,                                                           "map":null, "transform":null}
+        ]}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptor", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306033", "element_name":"(Surface salinity)", "descriptors":[
+          {"FXXYYY":"002033", "element_name":"Method of salinity/depth measurement", "standard_name":null,                           "map":null, "transform":null},
+          {"FXXYYY":"007063", "element_name":"Depth below sea/water surface (cm)",   "standard_name":null,                           "map":"var:SAL_SBE37_MEAN:attr:installed_height:value", "transform":"lambda x: -1.0*x"},
+          {"FXXYYY":"022064", "element_name":"Salinity",                             "standard_name":"sea_water_practical_salinity", "map":"var:SAL_SBE37_MEAN:value", "transform":null}
+        ]}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptor", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306041", "element_name":"(Depth and temperature profile (high accuracy/precision))", "descriptors":[
+          {"FXXYYY":"002032", "element_name":"Indicator for digitization", "standard_name":null, "map":null, "transform":null },
+          {"FXXYYY":"102000", "element_name": "Delayed replication of 2 descriptors", "nreplications":10, "descriptors":[
+            {"FXXYYY":"031001", "element_name":"Delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+               {"FXXYYY":"007062", "element_name":"Depth below sea/water surface", "standard_name":null,                    "map":null, "transform":null},
+               {"FXXYYY":"022043", "element_name":"Sea/water temperature",         "standard_name":"sea_water_temperature", "map":null, "transform":null}
+          ]}
+        ]}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptor", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306004", "element_name":"(Depth, temperature, salinity)", "descriptors":[
+          {"FXXYYY":"002032", "element_name":"Indicator for digitization",            "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"002033", "element_name":"Method of salinity/depth measurement",  "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"103000", "element_name":"Delayed replication of 3 descriptors", "nreplications":10, "descriptors":[
+            {"FXXYYY":"031001", "element_name":"Delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+            {"FXXYYY":"007062", "element_name":"Depth below sea/water surface", "standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022043", "element_name":"Sea/water temperature",         "standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022062", "element_name":"Salinity",                      "standard_name":null, "map":null, "transform":null}
+          ]}
+        ]}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptor", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306005", "element_name":null, "descriptors":[
+          {"FXXYYY":"002031", "element_name":"Duration and time of current measurement", "standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"103000", "element_name":"Delayed replication of 3 descriptors", "nreplications":10, "descriptors":[
+            {"FXXYYY":"031001", "element_name":"Delayed descriptor replication factor",    "map":null, "transform":"lambda x: int(x)"},
+            {"FXXYYY":"007062", "element_name":"Depth below sea/water surface", "standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022004", "element_name":"Direction of current",          "standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022031", "element_name":"Speed of current",              "standard_name":null, "map":null, "transform":null}
+          ]}
+        ]}
+      ]},
+      {"FXXYYY":"105000", "element_name":"Delayed replication of 5 descriptors", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+         {"FXXYYY":"041001", "element_name":"pCO2","standard_name":null, "map":null, "transform":null},
+         {"FXXYYY":"008043", "element_name":"Atmospheric chemical or physical constituent type","standard_name":null, "map":null, "transform":null},
+         {"FXXYYY":"015028", "element_name":"Mole fraction of atmospheric constituent / pollutant in dry air","standard_name":null, "map":null, "transform":null},
+         {"FXXYYY":"008043", "element_name":"Atmospheric chemical or physical constituent type","standard_name":null, "map":null, "transform":null},
+         {"FXXYYY":"013080", "element_name":"Water pH", "standard_name":null, "map":null, "transform":null}
+      ]},
+      {"FXXYYY":"104000", "element_name":"Delayed replication of 4 descriptors", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"041005", "element_name":"Turbidity",          "map":null, "transform":null},
+        {"FXXYYY":"041003", "element_name":"Dissolved nitrates", "map":null, "transform":null},
+        {"FXXYYY":"022188", "element_name":"Dissolved oxygen",   "map":"var:O2_CONC_AANDERAA_MEAN:value", "transform":null},
+        {"FXXYYY":"041002", "element_name":"Fluorescence",       "map":null, "transform":null}
+      ]},
+      {"FXXYYY":"101000", "element_name":"Delayed replication of 1 descriptors", "nreplications":0, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"306040", "element_name":null, "descriptors":[
+          {"FXXYYY":"022078", "element_name":"Duration of wave record","standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"022082", "element_name":"Maximum non-directional spectral wave density","standard_name":null, "map":null, "transform":null},
+          {"FXXYYY":"106000", "element_name":"Delayed replication of 6 descriptors", "nreplications":10, "descriptors":[
+            {"FXXYYY":"031001", "element_name":"Delayed descriptor replication factor","standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+            {"FXXYYY":"022080", "element_name":"Waveband central frequency","standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022069", "element_name":"Spectral wave density","standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022086", "element_name":"Mean direction from which waves are coming","standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022087", "element_name":"Principal direction from which waves are coming","standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022088", "element_name":"First normalized polar coordinate from Fourier coefficients", "standard_name":null, "map":null, "transform":null},
+            {"FXXYYY":"022089", "element_name":"Second normalized polar coordinate from Fourier coefficients", "standard_name":null, "map":null, "transform":null}
+          ]}
+        ]}
+      ]},
+      {"FXXYYY":"104000", "element_name":"Delayed replication of 4 descriptors", "nreplications":1, "descriptors":[
+        {"FXXYYY":"031000", "element_name":"Short delayed descriptor replication factor", "standard_name":null, "map":null, "transform":"lambda x: int(x)"},
+        {"FXXYYY":"008021", "element_name":"Time significance","standard_name":null, "map":"const:2", "transform":"lambda x: int(x)"},
+        {"FXXYYY":"004025", "element_name":"Time period or displacement","standard_name":null, "map":"const:0", "transform":"lambda x: int(x)"},
+        {"FXXYYY":"014017", "element_name":"Instantaneous long-wave radiation","standard_name":"surface_downwelling_longwave_flux_in_air", "map":"var:LW_IRRAD_MEAN:value", "transform":null},
+        {"FXXYYY":"014018", "element_name":"Instantaneous short-wave radiation", "standard_name":"surface_downwelling_shortwave_flux_in_air", "map":"var:SW_IRRAD_TOTAL_MEAN:value", "transform":null}
+      ]}
+    ]}
+  ]
+}
