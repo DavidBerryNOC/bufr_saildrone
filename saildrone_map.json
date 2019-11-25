@@ -7,17 +7,17 @@
   "descriptors_expanded":[
     {"FXXYYY":"315011", "element_name":null, "descriptors":[
       {"FXXYYY":"301150", "element_name":"(WIGOS identifier)", "descriptors":[
-        {"FXXYYY":"001125", "element_name":"WIGOS identifier series", "standard_name":null, "map":null, "transform":null},
-        {"FXXYYY":"001126", "element_name":"WIGOS issuer of identifier", "standard_name":null, "map":null, "transform":null},
-        {"FXXYYY":"001127", "element_name":"WIGOS issue number", "standard_name":null, "map":null, "transform":null},
-        {"FXXYYY":"001128", "element_name":"WIGOS local identifier (character)", "standard_name":null, "map":"const:HELLO", "transform":null}
+        {"FXXYYY":"001125", "element_name":"WIGOS identifier series", "standard_name":null, "map":"const:0", "transform":"lambda x: int(x)"},
+        {"FXXYYY":"001126", "element_name":"WIGOS issuer of identifier", "standard_name":null, "map":"const:22002", "transform":"lambda x: int(x)"},
+        {"FXXYYY":"001127", "element_name":"WIGOS issue number", "standard_name":null, "map":"const:0", "transform":"lambda x: int(x)"},
+        {"FXXYYY":"001128", "element_name":"WIGOS local identifier (character)", "standard_name":null, "map":"global:attr:id", "transform":null}
       ]},
       {"FXXYYY":"001036", "element_name":"Agency in charge of operating the observing platform", "standard_name":null, "map":"const:840002",         "transform":"lambda x: int(x)"},
       {"FXXYYY":"001085", "element_name":"Observing platform manufacturer's model",              "standard_name":null, "map":"global:attr:platform", "transform":null},
       {"FXXYYY":"001086", "element_name":"Observing platform manufacturer's serial number",      "standard_name":null, "map":"global:attr:drone_id", "transform":null},
       {"FXXYYY":"003001", "element_name":"Surface station type",                                 "standard_name":null, "map":"const:9",              "transform":"lambda x: int(x)"},
       {"FXXYYY":"208032", "element_name":"Change width of CCITT IA5 field",                      "standard_name":null, "map":null,                   "transform":null},
-      {"FXXYYY":"001079", "element_name":"Unique ID for report",                                 "standard_name":null, "map":null,                   "transform":null},
+      {"FXXYYY":"001079", "element_name":"Unique ID for report",                                 "standard_name":null, "map":"const:0",              "transform":"lambda x: uuid.uuid4().hex"},
       {"FXXYYY":"208000", "element_name":"Change width of CCITT IA5 field",                      "standard_name":null, "map":null,                   "transform":null},
       {"FXXYYY":"301011", "element_name":"(Year, month, day)", "descriptors":[
         {"FXXYYY":"004001", "element_name":"Year",  "standard_name":null, "map":"var:time:value", "transform":"lambda x: time.gmtime(x).tm_year"},

@@ -6,6 +6,7 @@ from encode_message import *
 import sys
 from bitarray import bitarray
 import argparse
+import uuid
 
 class bufr_list:
     sequence = list()
@@ -18,8 +19,8 @@ class bufr_list:
             if value['FXXYYY'][0] == '3':
                 self.flatten( value['descriptors'] )
             # don't need to worry about operators at this stage (need to check this is 100% true)
-            #elif value['FXXYYY'][0] == '2':
-            #    print("operator")
+            elif value['FXXYYY'][0] == '2':
+                print("operator")
             elif value['FXXYYY'][0] == '1':
                 nreplications = value['nreplications']
                 if value['FXXYYY'][3:6] == '000':
