@@ -43,7 +43,7 @@ def main( argv ):
     parser = argparse.ArgumentParser(description='Convert Saildrone NetCDF file to BUFR (selected elements only)')
     parser.add_argument("-i", dest="input_file", required=True, help="Source NetCDF file to convert")
     parser.add_argument("-o", dest="output_file", required=True, help="Destination file to write to")
-    parser.add_argument('-m', dest="mapping", required = False, default='saildrone_map.json',
+    parser.add_argument('-m', dest="mapping", required = False, default='saildrone_map_new.json',
                         help = 'JSON file containing mappings from NetCDF to BUFR template' )
     parser.add_argument('-t', dest="template", required=False, default='bufr_message.json',
                         help='JSON file containing template for BUFR message')
@@ -62,6 +62,10 @@ def main( argv ):
     # copy sequences from mapping to message template
     message['header']['section3']['descriptors']['value'] = mappings['descriptors']
 
+    # get ndescriptors and section3 length
+    ndesciptors = len( mappings['descriptors'] )
+    message['header']['section3']['descriptors']['width'] = ndesciptors * 2
+    message['header']['section3']['length']['value'] = 7 + ndesciptors * 2
     # now load netcdf file
     datafile = args.input_file
     root_data = nc.Dataset( datafile, 'r', format='NETCDF4')
