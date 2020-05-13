@@ -43,7 +43,7 @@ def main( argv ):
     parser = argparse.ArgumentParser(description='Convert Saildrone NetCDF file to BUFR (selected elements only)')
     parser.add_argument("-i", dest="input_file", required=True, help="Source NetCDF file to convert")
     parser.add_argument("-o", dest="output_file", required=True, help="Destination file to write to")
-    parser.add_argument('-m', dest="mapping", required = False, default='saildrone_map_new.json',
+    parser.add_argument('-m', dest="mapping", required = False, default='saildrone_map.json',
                         help = 'JSON file containing mappings from NetCDF to BUFR template' )
     parser.add_argument('-t', dest="template", required=False, default='bufr_message.json',
                         help='JSON file containing template for BUFR message')
@@ -109,7 +109,10 @@ def main( argv ):
                         if value_path[2] == 'attr':
                             val = root_data.variables[ value_path[1] ].getncattr( value_path[3] )
                         elif value_path[2] == 'value':
-                            val = np.asscalar(root_data.variables[value_path[1]][0, idx])
+                            if not np.ma.is_masked( root_data.variables[value_path[1]][0, idx] ):
+                                val = np.asscalar(root_data.variables[value_path[1]][0, idx])
+                            else:
+                                val = None
                         else :
                             assert False
                     elif value_path[0] == 'global':
@@ -120,7 +123,7 @@ def main( argv ):
                     else:
                         assert False
                      # now check to see if we need to transform it
-                    if elem['transform'] is not None :
+                    if (elem['transform'] is not None) & (val is not None) :
                         val = list(map(eval(elem['transform']), {val}))[0]
                 if elem['FXXYYY'][0:3] == '031' :
                     replications.append( val )

@@ -12,6 +12,7 @@
         {"FXXYYY":"001127", "element_name":"WIGOS issue number", "standard_name":null, "map":"const:0", "transform":"lambda x: int(x)"},
         {"FXXYYY":"001128", "element_name":"WIGOS local identifier (character)", "standard_name":null, "map":"global:attr:id", "transform":null}
       ]},
+      {"FXXYYY":"001087", "element_name":"WMO marine observing platform extended identifier",    "standard_name":null, "map":"global:attr:id",       "transform":"lambda x: int(x)"},
       {"FXXYYY":"001036", "element_name":"Agency in charge of operating the observing platform", "standard_name":null, "map":"const:840002",         "transform":"lambda x: int(x)"},
       {"FXXYYY":"001085", "element_name":"Observing platform manufacturer's model",              "standard_name":null, "map":"global:attr:platform", "transform":null},
       {"FXXYYY":"001086", "element_name":"Observing platform manufacturer's serial number",      "standard_name":null, "map":"global:attr:drone_id", "transform":null},
