@@ -17,12 +17,12 @@
         "local_sub_category":         {"width":1, "value":255, "kind":"int"},
         "master_table_verions":       {"width":1, "value":33, "kind":"int"},
         "local_table_version":        {"width":1, "value":255, "kind":"int"},
-        "year":                       {"width":2, "value":2019, "kind":"int"},
-        "month":                      {"width":1, "value":2, "kind":"int"},
-        "day":                        {"width":1, "value":27, "kind":"int"},
-        "hour":                       {"width":1, "value":23, "kind":"int"},
-        "minute":                     {"width":1, "value":6, "kind":"int"},
-        "second":                     {"width":1, "value":0, "kind":"int"},
+        "year":                       {"width":2, "value":null, "kind":"int"},
+        "month":                      {"width":1, "value":null, "kind":"int"},
+        "day":                        {"width":1, "value":null, "kind":"int"},
+        "hour":                       {"width":1, "value":null, "kind":"int"},
+        "minute":                     {"width":1, "value":null, "kind":"int"},
+        "second":                     {"width":1, "value":null, "kind":"int"},
         "optional":                   {"width":0, "value":null, "kind":"int"}
     },
     "section2": {

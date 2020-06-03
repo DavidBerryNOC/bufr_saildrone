@@ -1,7 +1,7 @@
 {
   "title":"Saildrone NetCDF to BUFR mappings",
   "version":"0.1",
-  "author":"David I. Berry",
+  "author":"David I. Berry, NOC",
   "typical_time":["global:attr:time_coverage_start"],
   "descriptors":["315011"],
   "descriptors_expanded":[
