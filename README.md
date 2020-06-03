@@ -11,4 +11,8 @@ Where:
     <bufr_template> is a JSON representation of a BUFR 4 message
     <mappings> is a JSON file containing the mappings from the NetCDF file to the BUFR message to encode
     
-  Sample files are provided.
+Sample files are provided. 
+- INPUT_DATA contains the example NetCDF files
+- OUTPUT_DATA contains those examples encoded to BUFR and then decoded to text
+- bufr_message.json is the example template file
+- saildrone_map.json is the example mapping from the NetCDF file to BUFR  
